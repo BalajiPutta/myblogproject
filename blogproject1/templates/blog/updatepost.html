@@ -1,0 +1,26 @@
+{% extends 'blog/dashboard.html' %}
+{% block content %}
+    <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="title"><span style="color: darkblue">Post Title:</span></label>
+  <input type="text" class="form-control" placeholder="Title" autofocus value="{{ post.title }}" name="title" id="title">
+</div>
+        <div class="form-group">
+  <label for="content"><span style="color: darkblue">Post Content:</span></label>
+  <textarea class="form-control" rows="5" value="{{ post.body }}" placeholder="Content" name="content" id="content"></textarea>
+</div>
+    <span style="color: darkblue">Status:</span><div class="radio">&nbsp;
+  <label><input type="radio" name="status" value="published" checked>&nbsp;Published</label>
+</div>
+<div class="radio">&nbsp;
+  <label><input type="radio" name="status" value="draft">&nbsp;Draft</label>
+</div>
+        <div class="form-group">
+        <label for="tags"><span style="color: darkblue">Post Tags:</span></label>
+  <input type="text" class="form-control" placeholder="Related tags with camma(,) saperate" autofocus name="tags" id="tags">
+</div>
+        <center><input type="submit" value="Update" class="btn btn-link btn-success"></center>
+
+    </form>
+{% endblock %}

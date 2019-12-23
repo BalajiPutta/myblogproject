@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% block title_block %}
+    {{ post.author}}
+{% endblock %}
+{% block content %}
+    {% for post1 in post %}
+    <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="/userposts/{{ post1.author_id}}">{{ post1.author|capfirst }}</a>
+          <small class="text-muted">{{ post1.publish}}</small>
+        </div>
+        <h2><a class="article-title" href="#">{{ post1.title|title }}</a></h2>
+        <p class="article-content">{{ post1.body|linebreaks }}</p>
+      </div>
+    </article>
+{#    <a href="/share/{{ post1.id }}" class="btn btn-light btn-success">Share Post</a>#}
+    {% endfor %}
+{% endblock %}
+

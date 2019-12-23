@@ -1,0 +1,30 @@
+{% extends 'blog/base.html'  %}
+
+{% block title_block %}
+    share by mail
+{% endblock %}
+{% block content %}
+    <article class="media content-section" xmlns="http://www.w3.org/1999/html">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="#">Mail Confirmation For:{{ post.title|title }}</a>
+          <small class="text-muted">by {{ post.author|capfirst}}</small>
+        </div>
+          {% if sent %}
+            <p class="article-content"> <form method="post">
+          <p class="article-content"><form method="post">
+          <h1>Your Email has been sent successfully with title {{ post.title|title }}</h1> </p>
+              <center><a href="{% url 'home' %}" class="btn btn-link btn-success">Home</a></center>
+          {% else %}
+          <p class="article-content"><form method="post">
+              {{ form.as_p }}
+              {% csrf_token %}
+              <center><input type="submit" class="btn btn-link btn-success" value="Send"></center>
+
+          </form></p>
+          {% endif %}
+
+      </div>
+    </article>
+{% endblock %}
+

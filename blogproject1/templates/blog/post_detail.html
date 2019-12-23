@@ -1,0 +1,50 @@
+{% extends 'blog/base.html' %}
+{% block title_block %}
+    {{ post2.title}}
+{% endblock %}
+{% block content %}
+    <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="/userposts/{{ post2.author_id}}">{{ post2.author|capfirst }}</a>
+          <small class="text-muted">{{ post2.publish}}</small>
+        </div>
+        <h2><a class="article-title" href="#">{{ post2.title|title }}</a></h2>
+        <p class="article-content">{{ post2.body|linebreaks }}</p>
+      </div>
+    </article>
+    <a href="/share/{{ post2.id }}" class="btn btn-light btn-success">Share Post</a>
+    {%  with comments.count as comment_count %}
+    <h2>{{ comment_count }}&nbsp;Comment{{ comment_count|pluralize }}</h2>
+    {% endwith %}
+    {% if comments %}
+    {% for i in comments %}
+    <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="#">{{ i.name|capfirst }}</a>
+          <small class="text-muted">{{i.created}}</small>
+        </div>
+        <p class="article-content">{{ i.comment|linebreaks }}</p>
+      </div>
+    </article>
+    {% endfor %}
+    {% else %}
+    <article class="media content-section">
+      <p class="article-content"><h2>No Comments Yet</h2></p>
+    </article>
+    {% endif %}
+    {% if csubmit %}
+    <article class="media content-section">
+        <p class="article-content">Your Comment added successfully</p>
+    </article>
+    {% else %}
+        <form method="post">
+          {{ form.as_p }}
+          {% csrf_token %}
+          <center><input type="submit" value="submit comment" class="btn brn-light btn-success">
+          </center>
+        </form>
+    {% endif %}
+{% endblock %}
+

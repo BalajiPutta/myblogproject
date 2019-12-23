@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <style>
+    input{
+        class:form-control
+    }
+    </style>
+    <form method="POST">
+        {{ form.as_p}}
+        {% csrf_token %}
+        <input type="submit" class="btn btn-success" value="signup">
+    </form>
+{% endblock %}

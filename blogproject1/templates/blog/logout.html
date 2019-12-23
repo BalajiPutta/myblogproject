@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<form>
+{% csrf_token %}
+    <h1> thank you for visiting us</h1>
+    <p style="color: red"> please login to your blog</p>
+    <a href="/accounts/login" role="button" class="btn btn-success">Login</a>
+
+</form>
+{% endblock %}
